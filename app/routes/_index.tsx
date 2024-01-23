@@ -24,8 +24,8 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Corewave" },
+    { name: "description", content: "Coming soon" },
   ];
 };
 
