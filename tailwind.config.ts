@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -19,11 +19,12 @@ const config = {
     },
     extend: {
       backgroundImage: {
-        'custom-gradient': 'radial-gradient(50% 50% at 50% 50%, rgba(63, 171, 119, 0.15) 0%, rgba(0, 0, 0, 0.00) 100%)',
+        "custom-gradient":
+          "radial-gradient(50% 50% at 50% 50%, rgba(63, 171, 119, 0.15) 0%, rgba(0, 0, 0, 0.00) 100%)",
       },
       fontFamily: {
-        'display': ['Roboto', 'system-ui', 'sans-serif'],
-        'body': ['Roboto', 'system-ui', 'sans-serif'],
+        display: ["Roboto", "system-ui", "sans-serif"],
+        body: ["Roboto", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -74,14 +75,19 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "up-and-down": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "up-and-down": "up-and-down 4s ease-in-out infinite",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
