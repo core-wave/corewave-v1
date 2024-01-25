@@ -1,4 +1,5 @@
 import * as z from "zod";
+import { useNavigate } from "@remix-run/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "~/components/ui/button";
@@ -12,15 +13,12 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
-import { createClient } from "@supabase/supabase-js";
 import { PasswordInput } from "./ui/password-input";
+import signIn from "./functions/signIn";
 
 export default function LoginForm() {
-  // Initialize Supabase client
-  const supabaseUrl = "https://sfafpujmnlaldgtrflyv.supabase.co";
-  const supabaseAnonKey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNmYWZwdWptbmxhbGRndHJmbHl2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDU5NTkxMzgsImV4cCI6MjAyMTUzNTEzOH0.aijbd7BspsTtqGMSgkzMoYJSwwanF1uGUnfb_pNlEi0";
-  const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+  const navigate = useNavigate();
 
   const formSchema = z.object({
     EmailAddress: z.string().email(),
@@ -36,7 +34,11 @@ export default function LoginForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-
+    const { EmailAddress, Password } = values;
+    const User = await signIn(EmailAddress, Password);
+    if (User.IsEmployee) {
+      navigate('/admin');
+    }
   }
 
   return (
